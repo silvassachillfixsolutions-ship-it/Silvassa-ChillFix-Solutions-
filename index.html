@@ -1,63 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Silvassa ChillFix Solutions</title>
-
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
             background: #111;
             color: #fff;
+            line-height: 1.6;
         }
 
-        header {
-            background: #000;
-            padding: 20px;
+        /* Header with Logo and Banner */
+        .header-banner {
+            background: linear-gradient(135deg, #000 0%, #003366 100%);
+            padding: 15px 0;
             text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-            color: #00eaff;
+            border-bottom: 3px solid #00eaff;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
         }
 
         .logo {
-            width: 90px;
-            margin-bottom: -10px;
-        }
-
-        .banner {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        nav {
+            width: 80px;
+            height: 80px;
+            background: #00eaff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            font-size: 14px;
             text-align: center;
-            background: #0d0d0d;
-            padding: 10px 0;
+            padding: 5px;
+            border: 3px solid #fff;
         }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00eaff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .tagline {
+            color: #ccc;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #0d0d0d;
+            padding: 12px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
         nav a {
             color: #ccc;
             margin: 0 15px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
+
         nav a:hover {
             color: #00eaff;
         }
 
+        /* Main Content */
         section {
-            padding: 30px;
+            padding: 30px 20px;
             max-width: 900px;
-            margin: auto;
+            margin: 0 auto;
         }
+
         h2 {
             color: #00eaff;
             border-left: 4px solid #00eaff;
-            padding-left: 10px;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-size: 24px;
         }
 
         .service-box, .price-box, .contact-box {
@@ -66,71 +107,188 @@
             margin: 10px 0;
             border-radius: 8px;
             border-left: 4px solid #00eaff;
+            transition: transform 0.3s ease;
+        }
+
+        .service-box:hover, .price-box:hover {
+            transform: translateX(5px);
         }
 
         .btn {
             display: inline-block;
             background: #00eaff;
             color: #000;
-            padding: 12px 20px;
+            padding: 12px 25px;
             font-weight: bold;
             border-radius: 6px;
             text-decoration: none;
             margin-top: 15px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
         .btn:hover {
             background: #0096b3;
+            color: #fff;
         }
 
+        /* WhatsApp Floating Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
         footer {
             background: #000;
             text-align: center;
-            padding: 15px;
+            padding: 20px;
             color: #666;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         /* Booking Form */
         .booking-form {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 15px;
+            gap: 15px;
+            margin-top: 20px;
         }
-        .booking-form input,
-        .booking-form select,
+
+        .booking-form label {
+            font-weight: bold;
+            color: #00eaff;
+            margin-bottom: -10px;
+        }
+
+        .booking-form input, 
+        .booking-form select, 
         .booking-form textarea {
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             border: 1px solid #555;
             background: #222;
             color: #fff;
+            font-size: 16px;
         }
-        .booking-form label {
-            font-weight: bold;
-            margin-top: 5px;
+
+        .booking-form input:focus, 
+        .booking-form select:focus, 
+        .booking-form textarea:focus {
+            outline: none;
+            border-color: #00eaff;
+        }
+
+        /* White Sections for Templates */
+        .white-section {
+            width: 92%;
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            color: #333;
+        }
+
+        .white-section h2 {
+            color: #05668d;
+        }
+
+        .white-section h3 {
+            color: #028090;
+            margin: 20px 0 10px 0;
+        }
+
+        /* QR Code Placeholder */
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .company-name {
+                font-size: 22px;
+            }
+            
+            nav a {
+                display: block;
+                margin: 5px 0;
+                font-size: 14px;
+            }
+            
+            section {
+                padding: 20px 15px;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="https://i.imgur.com/NT7QZ5a.png" class="logo"><br>
-    Silvassa ChillFix Solutions
+<!-- Header with Logo and Banner -->
+<header class="header-banner">
+    <div class="logo-container">
+        <div class="logo">
+            CHILL FIX SOLUTIONS
+        </div>
+        <div>
+            <div class="company-name">Silvassa ChillFix Solutions</div>
+            <div class="tagline">Your Trusted AC, Fridge & RO Service Experts</div>
+        </div>
+    </div>
 </header>
 
-<img src="https://i.imgur.com/0YgkYfT.png" class="banner">
-
+<!-- Navigation -->
 <nav>
     <a href="#services">Services</a>
     <a href="#pricing">Pricing</a>
+    <a href="#booking">Book Now</a>
     <a href="#reviews">Reviews</a>
     <a href="#contact">Contact</a>
-    <a href="#booking">Booking</a>
 </nav>
 
-<!-- SERVICES -->
+<!-- Main Banner Image Section -->
+<section style="text-align: center; padding: 40px 20px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), #001122;">
+    <h1 style="color: #00eaff; font-size: 2.5em; margin-bottom: 20px;">Professional Home Appliance Services</h1>
+    <p style="font-size: 1.2em; margin-bottom: 30px; color: #ccc;">Fast, Reliable, and Affordable AC, Fridge & RO Services in Silvassa</p>
+    <a href="#booking" class="btn">Book Service Now</a>
+</section>
+
+<!-- Services Section -->
 <section id="services">
     <h2>Our Services</h2>
     <div class="service-box">AC Repair & Service</div>
@@ -140,7 +298,7 @@
     <div class="service-box">AC Installation & Uninstallation</div>
 </section>
 
-<!-- PRICING -->
+<!-- Pricing Section -->
 <section id="pricing">
     <h2>Pricing</h2>
     <div class="price-box">AC Service – ₹399</div>
@@ -151,15 +309,52 @@
     <div class="price-box">RO Service – ₹349</div>
 </section>
 
-<!-- REVIEWS -->
-<section id="reviews">
-    <h2>Customer Reviews</h2>
-    <div class="service-box">“Very professional & quick service!” – ★★★★★</div>
-    <div class="service-box">“Affordable pricing & perfect installation.” – ★★★★★</div>
-    <div class="service-box">“Highly recommended for home services.” – ★★★★★</div>
+<!-- Booking Form Section -->
+<section id="booking">
+    <h2>Online Booking</h2>
+    <form class="booking-form">
+        <label>Name:</label>
+        <input type="text" placeholder="Your Name" required />
+
+        <label>Phone Number:</label>
+        <input type="tel" placeholder="Your Phone Number" required />
+
+        <label>Email:</label>
+        <input type="email" placeholder="Your Email (optional)" />
+
+        <label>Select Service:</label>
+        <select required>
+            <option value="">-- Choose Service --</option>
+            <option>AC Installation</option>
+            <option>AC Repair & Gas Charging</option>
+            <option>Fridge / Deep Freezer Repair</option>
+            <option>RO Installation</option>
+            <option>RO Servicing</option>
+            <option>AMC (Annual Maintenance Contract)</option>
+        </select>
+
+        <label>Select Date:</label>
+        <input type="date" required />
+
+        <label>Preferred Time:</label>
+        <input type="time" required />
+
+        <label>Address:</label>
+        <textarea placeholder="Your Full Address" required rows="4"></textarea>
+
+        <button type="submit" class="btn">Book Now</button>
+    </form>
 </section>
 
-<!-- CONTACT -->
+<!-- Reviews Section -->
+<section id="reviews">
+    <h2>Customer Reviews</h2>
+    <div class="service-box">"Very professional & quick service!" – ★★★★★</div>
+    <div class="service-box">"Affordable pricing & perfect installation." – ★★★★★</div>
+    <div class="service-box">"Highly recommended for home services." – ★★★★★</div>
+</section>
+
+<!-- Contact Section -->
 <section id="contact">
     <h2>Contact Us</h2>
     <div class="contact-box"><strong>Name:</strong> Md Rahaman</div>
@@ -167,74 +362,107 @@
     <div class="contact-box"><strong>Alternate:</strong> +91 8240471246</div>
     <div class="contact-box"><strong>Email:</strong> silvassachillfixsolutions@gmail.com</div>
     <div class="contact-box"><strong>Location:</strong> Silvassa, Dadra & Nagar Haveli</div>
-
     <a class="btn" href="https://wa.me/918017058848" target="_blank">WhatsApp Now</a>
 </section>
 
-<!-- BOOKING (ONLY ONE) -->
-<section id="booking">
-    <h2>Online Booking</h2>
-
-    <form class="booking-form">
-        <label>Name:</label>
-        <input type="text" placeholder="Your Name" required>
-
-        <label>Phone Number:</label>
-        <input type="tel" placeholder="Your Phone Number" required>
-
-        <label>Select Service:</label>
-        <select required>
-            <option value="">-- Choose Service --</option>
-            <option>AC Installation</option>
-            <option>AC Repair & Gas Charging</option>
-            <option>Fridge Repair</option>
-            <option>RO Installation</option>
-            <option>RO Service</option>
-        </select>
-
-        <label>Date:</label>
-        <input type="date" required>
-
-        <label>Preferred Time:</label>
-        <input type="time" required>
-
-        <label>Address:</label>
-        <textarea placeholder="Your Full Address" required></textarea>
-
-        <button type="submit" class="btn">Book Now</button>
-    </form>
+<!-- WhatsApp Auto-Reply Template -->
+<section class="white-section">
+    <h2>WhatsApp Auto‑Reply Template</h2>
+    <p style="font-size:18px; line-height:28px;">Aap apne WhatsApp Business mein ye auto‑reply set kar sakte hain:</p>
+    <div style="background:#f1faff; padding:15px; border-left:5px solid #028090; border-radius:8px; font-size:18px; margin-top: 15px;">
+        Hello! 👋 Thank you for contacting <strong>Silvassa ChillFix Solutions</strong>.<br><br>
+        ✔ AC / Fridge / RO Service & Repair Available<br>
+        ✔ Same‑Day Home Service<br>
+        ✔ Affordable Pricing<br>
+        ✔ Genuine Parts<br><br>
+        <strong>Please send your booking details:</strong><br>
+        • Full Name:<br>
+        • Phone Number:<br>
+        • Address:<br>
+        • Service Needed:<br>
+        • Preferred Date & Time:<br><br>
+        We will confirm your booking shortly. 🙂
+    </div>
 </section>
 
+<!-- QR Code Section -->
+<section class="white-section">
+    <h2>Scan & Book Instantly</h2>
+    <p>Scan this QR code to book your service directly on WhatsApp:</p>
+    <div class="qr-placeholder">
+        QR Code Image<br>(Add actual QR code here)
+    </div>
+    <p style="text-align: center; font-style: italic;">(QR Code will auto-open WhatsApp booking message)</p>
+</section>
+
+<!-- Auto Reply Templates -->
+<section class="white-section">
+    <h2>WhatsApp Auto-Reply Templates</h2>
+    
+    <h3>Hinglish Auto-Reply</h3>
+    <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin-bottom:20px;">
+        "Namaste! 🙏 Silvassa ChillFix Solutions mein aapka swagat hai. Aapki service request humein mil gayi hai. Hum jaldi hi aapse contact karenge. Aap chahe to apni service ka type, address aur preferred time yahin bhej sakte hain."
+    </div>
+
+    <h3>English Auto-Reply</h3>
+    <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin-bottom:20px;">
+        "Hello! 👋 Thank you for contacting Silvassa ChillFix Solutions. We have received your request. Our team will reach out shortly. You may reply with the service type, your address, and preferred time for faster booking."
+    </div>
+
+    <h3>Professional Quick-Reply (Tech)</h3>
+    <div style="background:#f8f9fa; padding:15px; border-radius:8px;">
+        "Your ticket has been generated successfully. Our technician will contact you shortly. For urgent cases, call us directly at +918017058848."
+    </div>
+</section>
+
+<!-- Google Calendar Guide -->
+<section class="white-section">
+    <h2>Google Calendar Auto-Sync Guide</h2>
+    <ol style="font-size:18px; line-height:30px; padding-left: 20px;">
+        <li>Open Google Calendar on your phone.</li>
+        <li>Tap on <b>Create → Event</b>.</li>
+        <li>Add Service Title (Example: "AC Service - Customer Name").</li>
+        <li>Add Customer Address and WhatsApp Number.</li>
+        <li>Set Reminder: 30 minutes before appointment.</li>
+        <li>Click on <b>Save</b>.</li>
+    </ol>
+    <p style="margin-top: 15px;">Now every booking message you receive can be added to Google Calendar in 5 seconds with these settings.</p>
+</section>
+
+<!-- WhatsApp Floating Button -->
+<a class="floating-whatsapp" href="https://wa.me/918017058848" target="_blank">💬</a>
+
+<!-- Footer -->
 <footer>
     © 2025 Silvassa ChillFix Solutions | All Rights Reserved
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector(".booking-form");
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".booking-form");
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
+            const name = form.querySelector("input[placeholder='Your Name']").value;
+            const phone = form.querySelector("input[placeholder='Your Phone Number']").value;
+            const email = form.querySelector("input[placeholder='Your Email (optional)']").value;
+            const service = form.querySelector("select").value;
+            const date = form.querySelector("input[type='date']").value;
+            const time = form.querySelector("input[type='time']").value;
+            const address = form.querySelector("textarea").value;
 
-        const name = form.querySelector("input[placeholder='Your Name']").value;
-        const phone = form.querySelector("input[placeholder='Your Phone Number']").value;
-        const service = form.querySelector("select").value;
-        const date = form.querySelector("input[type='date']").value;
-        const time = form.querySelector("input[type='time']").value;
-        const address = form.querySelector("textarea").value;
+            const message = `*New Service Booking*%0A%0A` +
+                `*Name:* ${name}%0A` +
+                `*Phone:* ${phone}%0A` +
+                `*Email:* ${email}%0A` +
+                `*Service:* ${service}%0A` +
+                `*Date:* ${date}%0A` +
+                `*Preferred Time:* ${time}%0A` +
+                `*Address:* ${address}%0A`;
 
-        const message =
-            `*New Booking Received!*%0A%0A` +
-            `*Name:* ${name}%0A` +
-            `*Phone:* ${phone}%0A` +
-            `*Service:* ${service}%0A` +
-            `*Date:* ${date}%0A` +
-            `*Time:* ${time}%0A` +
-            `*Address:* ${address}`;
-
-        window.open(`https://wa.me/918017058848?text=${message}`, "_blank");
+            window.open(`https://wa.me/918017058848?text=${message}`, "_blank");
+        });
     });
-});
 </script>
 
 </body>
